@@ -17,7 +17,7 @@ pad.watch(function(err, value) {
 		timeout = setTimeout(function() {
 			console.log('Ready! Waiting for jump...');
 		}, 3000)
-	} else {
+	} else if (padDown !== 0) {
 		if (Date.now() - padDown < 3000) {
 			console.log('Jump before 3 seconds detected. Try again.');
 			clearTimeout(timeout);
