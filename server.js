@@ -21,10 +21,10 @@ pad.watch(function(err, value) {
 		if (Date.now() - padDown < 3000) {
 			console.log('Jump before 3 seconds detected. Try again.');
 			clearTimeout(timeout);
-			padDown = 0;
 		} else {
 			ps.stdin.write('capture-image\n');
 			console.log('Jump detected! Picture captured!');
 		}
+		padDown = 0;
 	}
 });
