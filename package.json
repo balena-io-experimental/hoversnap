@@ -1,0 +1,15 @@
+{
+  "name": "hoversnap",
+  "version": "0.0.0",
+  "description": "Capture mid-air pictures using a DSLR, a RasbperryPi and a switch",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "bash deps.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "onoff": "^0.3.2"
+  }
+}
