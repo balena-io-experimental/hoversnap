@@ -28,13 +28,9 @@ var dedupFilter = function() {
 
 // Implement a low-pass filter
 var lowPassFilter = function(wait) {
-	var emit = _.throttle(function(data) {
+	return _.throttle(function(data) {
 		this.emit('data', data);
 	}, wait, {trailing: false});
-
-	return function(data) {
-		emit.call(this, data);
-	}
 };
 
 var logMessages = function(data) {
@@ -65,6 +61,8 @@ var captureImage = function() {
 es.pipeline(
 	padEventStream,
 	es.mapSync(Number),
+	es.through(dedupFilter()),
+	es.through(lowPassFilter(3000)),
 	es.through(dedupFilter()),
 	es.through(lowPassFilter(3000)),
 	es.through(logMessages),
