@@ -40,8 +40,8 @@ var lowPassFilter = function(wait) {
 var logMessages = function(data) {
 	if (data === 0) {
 		console.log('Get ready to jump in 3 seconds!');
-		this.emit('data', data);
 	}
+	this.emit('data', data);
 }
 
 // Implement a threshold filter
