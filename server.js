@@ -28,14 +28,21 @@ var dedupFilter = function() {
 
 // Implement a low-pass filter
 var lowPassFilter = function(wait) {
-	var emit = _.debounce(function(data) {
+	var emit = _.throttle(function(data) {
 		this.emit('data', data);
-	}, wait, {leading: true});
+	}, wait, {trailing: false});
 
 	return function(data) {
 		emit.call(this, data);
 	}
 };
+
+var logMessages = function(data) {
+	if (data === 0) {
+		console.log('Get ready to jump in 3 seconds!');
+		this.emit('data', data);
+	}
+}
 
 // Implement a threshold filter
 var thresholdFilter = function(threshold) {
@@ -57,8 +64,10 @@ var captureImage = function() {
 
 es.pipeline(
 	padEventStream,
+	es.mapSync(Number),
 	es.through(dedupFilter()),
 	es.through(lowPassFilter(3000)),
+	es.through(logMessages),
 	es.through(thresholdFilter(0.5)),
 	es.mapSync(captureImage)
 );
