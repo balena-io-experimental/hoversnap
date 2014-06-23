@@ -29,5 +29,5 @@ es.pipeline(
 	es.through filters.threshold(0.5)
 
 	# Map each trigger event to a JPEG capture
-	es.through camera.captureStream()
+	es.through camera.captureStream
 )
