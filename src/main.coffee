@@ -11,7 +11,7 @@ logGetReady = (data) ->
 
 es.pipeline(
 	# Get raw GPIO stream
-	gpioStream(17)
+	gpioStream()
 
 	# Remove duplicate events (GPIO sends noise sometimes)
 	es.through filters.dedup()
