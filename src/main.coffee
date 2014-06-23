@@ -29,5 +29,5 @@ es.pipeline(
 	es.through filters.threshold(0.5)
 
 	# Capture images
-	camera
+	es.through camera
 )
