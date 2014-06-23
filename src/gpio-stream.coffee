@@ -17,3 +17,14 @@ module.exports = ->
 	)
 	
 	return gpioEventStream
+
+# Cleanup code
+process.on 'SIGINT', ->
+	console.log('Got SIGINT. Cleaning up gpio state')
+	piGpio.close(11)
+
+process.on 'uncaughtException', (err) ->
+	console.log('Uncaught exception! Cleaning up gpio state')
+	piGpio.close(11)
+	console.log(err)
+	process.exit()
