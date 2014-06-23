@@ -28,6 +28,6 @@ es.pipeline(
 	# Create the shutter trigger event stream
 	es.through filters.threshold(0.5)
 
-	# Map each trigger event to a JPEG capture
-	es.through camera.captureStream
+	# Capture images
+	camera
 )

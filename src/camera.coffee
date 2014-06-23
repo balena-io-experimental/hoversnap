@@ -1,6 +1,12 @@
+fs = require 'fs'
+path = require 'path'
 {spawn} = require 'child_process'
 
-ps = spawn('gphoto2', ['--shell'])
+TMP_DIR = '/tmp/hoversnap'
 
-exports.captureStream = ->
-	ps.stdin.write('capture-image\n')
+fs.mkdirSync(TMP_DIR)
+ps = spawn('gphoto2', ['--shell'], cwd: '/tmp/hoversnap')
+
+# Data existence means we should trigger a photo
+module.exports = es.through (data) ->
+	ps.stdin.write('capture-image-and-download\n')
