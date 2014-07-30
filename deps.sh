@@ -1,3 +1,8 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+
 # Install gphoto2 used to control the camera
 apt-get update
 apt-get install -y gphoto2
